@@ -7,12 +7,12 @@
  * Return: 0
  * **/
 
-int main(int ac, char **argv)
+int main()
 {
     char *line = NULL; 
     // char *command = NULL; 
     int status = 0;
-    (void) ac;
+    // (void) ac;
 
     // Infinite loop
     while (1)
