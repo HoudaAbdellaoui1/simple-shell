@@ -10,29 +10,26 @@
 int main()
 {
     char *line = NULL; 
-    // char *command = NULL; 
-    int status = 0;
+    char **command = NULL; 
+    int status = 0, i=0;
     // (void) ac;
 
     // Infinite loop
     while (1)
     {
         line = read_line();
-
         // reach EOF / ctrl+D behavior
         if (line == NULL)
         {
-            // Return new line after ctrl + D
-            write(STDOUT_FILENO, "\n", 1);
+            // If program reaches end of file, print new line after ctrl + D
+            // If we're on terminal
+            if( isatty(STDIN_FILENO)==1)
+                write(STDOUT_FILENO, "\n", 1);
             return (status);
         }
-        return (status);
-        printf("%s", line);
-        free(line);
-
-        // command = splitter(line);
-
-        // status = _execute(command, argv);
+        command = splitter(line);
+        if(!command)
+            continue;
+        status = _execute(command, argv);
     }
-
 }

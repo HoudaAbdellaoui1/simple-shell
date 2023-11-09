@@ -10,5 +10,12 @@
 #include <errno.h>
 
 char *read_line(void);
+char **splitter(char *line);
+
+char *_duplicate(const char *str);
+int _compare(char *s1, char *s2);
+char *_copy(char *dest, char *src);
+char *_concat(char *dest, char *src);
+int _length(char *s);
 
 #endif
