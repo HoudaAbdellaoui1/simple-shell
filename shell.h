@@ -9,13 +9,18 @@
 #include <sys/stat.h>
 #include <errno.h>
 
-char *read_line(void);
+extern char **environ;
+
+char *
+read_line(void);
 char **splitter(char *line);
+int _execute(char **command, char **argv);
 
 char *_duplicate(const char *str);
 int _compare(char *s1, char *s2);
 char *_copy(char *dest, char *src);
 char *_concat(char *dest, char *src);
 int _length(char *s);
+void freearray2D(char **arr);
 
 #endif
