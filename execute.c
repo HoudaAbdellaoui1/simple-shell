@@ -11,7 +11,7 @@ int _execute(char **command, char **argv)
     if (child == 0)
     {
         // to pass environment vars to the execve() command
-        if (execve(command[0], command, environ == -1))
+        if (execve(command[0], command, environ) == -1)
         {
             perror(argv[0]);
             freearray2D(command);
