@@ -26,5 +26,5 @@ int _length(char *s);
 void freearray2D(char **arr);
 char *_itoa(int n);
 void printerror(char *name, char *command, int id);
-
+void reverse_string(char *str, int len);
 #endif

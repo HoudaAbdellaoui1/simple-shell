@@ -13,8 +13,9 @@ void freearray2D(char **arr)
     free(arr[i]), arr[i] = NULL;
 }
 
+void printerror(char *name, char *command, int id)
 {
-    char *index, message[] = " : not found\n";
+    char *index, message[] = " : not found";
 
     index = _itoa(id);
 
