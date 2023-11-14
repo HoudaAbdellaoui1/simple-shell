@@ -19,7 +19,7 @@ char *_getenv(char *variable);
 char *_getpath(char *command);
 int is_builtin(char *command);
 void handle_builtin(char **command, char**argv, int *status, int idx);
-void exit_shell(char **command, int *status);
+void exit_shell(char **command, char **argv, int *status, int idx);
 void print_env(char **command, int *status);
 
 char *_duplicate(const char *str);
@@ -31,4 +31,7 @@ void freearray2D(char **arr);
 char *_itoa(int n);
 void printerror(char *name, char *command, int id);
 void reverse_string(char *str, int len);
+int is_positive(char *str);
+int _atoi(char *str);
+
 #endif
