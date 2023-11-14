@@ -4,6 +4,17 @@ char *_getpath(char *command)
 {
     char *path_env, *full_cmd, *dir;
     struct stat st;
+    int i = 0;
+
+    for (i = 0; command[i]; i++)
+    {
+        if (command[i] == '/')
+        {
+            if (stat(command, &st) == 0)
+                return (_duplicate(command));
+            return (NULL);
+        }
+    }
 
     path_env = _getenv("PATH");
     dir = strtok(path_env, ":");
