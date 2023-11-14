@@ -8,7 +8,7 @@
 
 ## Description
 
-This is a Simple Shell project created as part of [Course/Project Name]. The purpose of this project is to implement a basic command-line
+This is a Simple Shell project created as part of   AlX software engineering program. The purpose of this project is to implement a basic command-line
 interpreter that mimics some functionalities of a shell, such as Bash.
 
 ### Project Features
