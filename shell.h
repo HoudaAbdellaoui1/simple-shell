@@ -14,7 +14,7 @@ extern char **environ;
 char *
 read_line(void);
 char **splitter(char *line);
-int _execute(char **command, char **argv);
+int _execute(char **command, char **argv, int idx);
 char *_getenv(char *variable);
 char *_getpath(char *command);
 
@@ -24,5 +24,7 @@ char *_copy(char *dest, char *src);
 char *_concat(char *dest, char *src);
 int _length(char *s);
 void freearray2D(char **arr);
+char *_itoa(int n);
+void printerror(char *name, char *command, int id);
 
 #endif
