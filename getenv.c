@@ -5,7 +5,7 @@ char *_getenv(char *variable)
     int i = 0;
     char *tmp, *key, *value, *env;
 
-    for (i=0; environ[i]; i++)
+    for (i = 0; environ[i]; i++)
     {
         tmp = _duplicate(environ[i]);
         key = strtok(tmp, "=");
@@ -19,9 +19,4 @@ char *_getenv(char *variable)
         free(tmp), tmp = NULL;
     }
     return (NULL);
-}
-int main()
-{
-    printf("%s\n", _getenv("PATH"));
-    return (0);
 }
