@@ -11,8 +11,8 @@ int _execute(char **command, char **argv, int idx)
     full_command = _getpath(command[0]);
     if (!full_command)
     {
-        printerror(argv[0], command[0], idx)
-            freearray2D(command);
+        printerror(argv[0], command[0], idx);
+        freearray2D(command);
         return (127);
     }
     child = fork();

@@ -1,6 +1,5 @@
 #include "shell.h"
 
-// duplicator
 char *_duplicate(const char *str)
 {
     char *pointer;
@@ -21,7 +20,6 @@ char *_duplicate(const char *str)
         pointer[i] = str[i];
     return (pointer);
 }
-// comparer
 int _compare(char *s1, char *s2)
 {
     while (*s1 && *s1 == *s2)
@@ -31,7 +29,6 @@ int _compare(char *s1, char *s2)
     }
     return (int)(unsigned char)(*s1) - (int)(unsigned char)(*s2);
 }
-// length calculator
 int _length(char *s)
 {
     int len = 0;
@@ -41,7 +38,6 @@ int _length(char *s)
 
     return (len);
 }
-// // concatenator
 char *_concat(char *dest, char *src)
 {
     char *p = dest;
@@ -59,7 +55,6 @@ char *_concat(char *dest, char *src)
     return (dest);
 }
 
-// // copier
 char *_copy(char *dest, char *src)
 {
     int i = 0;
