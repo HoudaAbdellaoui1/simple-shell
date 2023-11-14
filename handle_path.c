@@ -17,6 +17,9 @@ char *_getpath(char *command)
     }
 
     path_env = _getenv("PATH");
+    if (!path_env)
+        return (NULL);
+
     dir = strtok(path_env, ":");
     while (dir)
     {
@@ -38,14 +41,4 @@ char *_getpath(char *command)
     }
     free(path_env);
     return (NULL);
-}
-int main(int ac, char **av)
-{
-    char *full_cmd;
-
-    full_cmd = _getpath(av[1]);
-    if (full_cmd)
-        printf("%s\n", full_cmd);
-    else
-        printf("doesnt exist");
 }
