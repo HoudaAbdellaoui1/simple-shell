@@ -15,7 +15,7 @@ char *_getpath(char *command)
             _copy(full_cmd, dir);
             _concat(full_cmd, "/");
             _concat(full_cmd, command);
-            if (state(full_cmd, &st) == 0)
+            if (stat(full_cmd, &st) == 0)
             {
                 free(path_env);
                 return (full_cmd);
@@ -36,5 +36,5 @@ int main(int ac, char **argv)
     if (full_cmd)
         printf("%s\n", full_cmd);
     else
-        printf("doesnt exist")
+        printf("doesnt exist");
 }
