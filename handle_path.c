@@ -28,7 +28,7 @@ char *_getpath(char *command)
     free(path_env);
     return (NULL);
 }
-int main(int ac, char **argv)
+int main(int ac, char **av)
 {
     char *full_cmd;
 
