@@ -5,7 +5,7 @@
  * @ac: Count of arguments
  * @av: Arguments
  * Return: 0
- * **/
+ **/
 
 int main(int ac, char **argv)
 {
