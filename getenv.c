@@ -9,7 +9,7 @@ char *_getenv(char *variable)
     {
         tmp = _duplicate(environ[i]);
         key = strtok(tmp, "=");
-        if (_compare(key, tmp) == 0)
+        if (_compare(key, variable) == 0)
         {
             value = strtok(NULL, "\n");
             env = _duplicate(value);

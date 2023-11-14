@@ -23,6 +23,6 @@ void printerror(char *name, char *command, int id)
     write(STDERR_FILENO, ": ", 2);
     write(STDERR_FILENO, index, _length(index));
     write(STDERR_FILENO, ": ", 2);
-    write(STDERR_FILENO, cmd, _length(command));
+    write(STDERR_FILENO, command, _length(command));
     write(STDERR_FILENO, message, _length(message));
 }
