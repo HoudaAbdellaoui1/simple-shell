@@ -15,11 +15,9 @@ char *_getpath(char *command)
             return (NULL);
         }
     }
-
     path_env = _getenv("PATH");
     if (!path_env)
         return (NULL);
-
     dir = strtok(path_env, ":");
     while (dir)
     {
@@ -35,7 +33,6 @@ char *_getpath(char *command)
                 return (full_cmd);
             }
             free(full_cmd), full_cmd = NULL;
-
             dir = strtok(NULL, ":");
         }
     }
