@@ -22,23 +22,47 @@ char *_duplicate(const char *str)
     return(pointer);
 }
 // comparer
-// int _compare(char *s1, char *s2)
-// {
-//     int cmp;
-
-//     cmp = (int)*s1 - (int)*s2;
-
-// }
+int _compare(char *s1, char *s2)
+{
+    while (*s1 && *s1 == *s2) { ++s1; ++s2; }
+    return (int)(unsigned char)(*s1) - (int)(unsigned char)(*s2);
+}
 // length calculator
-// int _length(char *s){}
-// // concatenator
-// char *_concat(char *dest, char *src)
-// {
+int _length(char *s)
+{
+    int len = 0;
 
-// }
+    while(s[len])
+        len++;
+    return (len);
+}
+// // concatenator
+char *_concat(char *dest, char *src)
+{
+    char *p = dest;
+
+    while (*p)
+        p++;
+
+    while (*src)
+    {
+        *p = *src;
+        p++;
+        src++;
+    }
+    *p = '\0';
+    return (dest);
+}
 
 // // copier
-// char *_copy(char *dest, char *src)
-// {
-
-// }
+char *_copy(char *dest, char *src)
+{
+    int i = 0;
+    while(src[i])
+    {
+        dest[i] = src[i];
+        i++;
+    }
+    dest[i] = '\0';
+    return (dest);
+}
