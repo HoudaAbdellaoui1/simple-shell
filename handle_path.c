@@ -7,7 +7,7 @@ char *_getpath(char *command)
 
     path_env = _getenv("PATH");
     dir = strtok(path_env, ":");
-    while(dir)
+    while (dir)
     {
         full_cmd = malloc(_length(dir) * _length(command) + 2);
         if (full_cmd)
@@ -33,8 +33,8 @@ int main(int ac, char **argv)
     char *full_cmd;
 
     full_cmd = _getpath(av[1]);
-    if(full_cmd)
+    if (full_cmd)
         printf("%s\n", full_cmd);
     else
         printf("doesnt exist")
-}  
+}

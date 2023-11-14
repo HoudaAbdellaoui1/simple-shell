@@ -6,25 +6,29 @@ char *_duplicate(const char *str)
     char *pointer;
     int i = 0, len = 0;
 
-    if(str == NULL)
+    if (str == NULL)
         return (NULL);
-    while(*str != '\0')
+    while (*str != '\0')
     {
         len++;
         str++;
     }
     str = str - len;
     pointer = malloc(sizeof(char) * (len + 1));
-    if(pointer == NULL)
+    if (pointer == NULL)
         return (NULL);
     for (i = 0; i <= len; i++)
         pointer[i] = str[i];
-    return(pointer);
+    return (pointer);
 }
 // comparer
 int _compare(char *s1, char *s2)
 {
-    while (*s1 && *s1 == *s2) { ++s1; ++s2; }
+    while (*s1 && *s1 == *s2)
+    {
+        ++s1;
+        ++s2;
+    }
     return (int)(unsigned char)(*s1) - (int)(unsigned char)(*s2);
 }
 // length calculator
@@ -32,8 +36,9 @@ int _length(char *s)
 {
     int len = 0;
 
-    while(s[len])
+    while (s[len])
         len++;
+
     return (len);
 }
 // // concatenator
@@ -58,7 +63,7 @@ char *_concat(char *dest, char *src)
 char *_copy(char *dest, char *src)
 {
     int i = 0;
-    while(src[i])
+    while (src[i])
     {
         dest[i] = src[i];
         i++;
