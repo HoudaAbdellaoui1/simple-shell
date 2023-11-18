@@ -1,114 +1,131 @@
 #include "shell.h"
 
-/**
- * _strdup - returns a pointer to a newly allocated space in memory, which
- * contains a copy of the string given as a parameter
- * @str: pointer to a string
- * Return: pointer to a string
- */
-char *_strdup(char *str)
+char *_duplicate(const char *str)
 {
-	int i, l;
-	char *new;
+    char *pointer;
+    int i = 0, len = 0;
 
-	if (!str)
-	{
-		return (NULL);
-	}
-	for (l = 0; str[l] != '\0';)
-	{
-		l++;
-	}
-	new = malloc(sizeof(char) * l + 1);
-	if (!new)
-	{
-		return (NULL);
-	}
-	for (i = 0; i < l; i++)
-	{
-		new[i] = str[i];
-	}
-	new[l] = str[l];
-	return (new);
+    if (str == NULL)
+        return (NULL);
+    while (*str != '\0')
+    {
+        len++;
+        str++;
+    }
+    str = str - len;
+    pointer = malloc(sizeof(char) * (len + 1));
+    if (pointer == NULL)
+        return (NULL);
+    for (i = 0; i <= len; i++)
+        pointer[i] = str[i];
+    return (pointer);
+}
+int _compare(char *s1, char *s2)
+{
+    while (*s1 && *s1 == *s2)
+    {
+        ++s1;
+        ++s2;
+    }
+    return (int)(unsigned char)(*s1) - (int)(unsigned char)(*s2);
+}
+int _length(char *s)
+{
+    int len = 0;
+
+    while (s[len])
+        len++;
+
+    return (len);
+}
+char *_concat(char *dest, char *src)
+{
+    char *p = dest;
+
+    while (*p)
+        p++;
+
+    while (*src)
+    {
+        *p = *src;
+        p++;
+        src++;
+    }
+    *p = '\0';
+    return (dest);
 }
 
-/**
- * concat_all - concats 3 strings in a newly allocated memory
- * @name: first string
- * @sep: second string
- * @value: Third string
- * Return: pointer to the new string
- */
-char *concat_all(char *name, char *sep, char *value)
+char *_copy(char *dest, char *src)
 {
-	char *result;
-	int l1, l2, l3, i, k;
-
-	l1 = _strlen(name);
-	l2 = _strlen(sep);
-	l3 = _strlen(value);
-
-	result = malloc(l1 + l2 + l3 + 1);
-	if (!result)
-		return (NULL);
-
-	for (i = 0; name[i]; i++)
-		result[i] = name[i];
-	k = i;
-
-	for (i = 0; sep[i]; i++)
-		result[k + i] = sep[i];
-	k = k + i;
-
-	for (i = 0; value[i]; i++)
-		result[k + i] = value[i];
-	k = k + i;
-
-	result[k] = '\0';
-
-	return (result);
+    int i = 0;
+    while (src[i])
+    {
+        dest[i] = src[i];
+        i++;
+    }
+    dest[i] = '\0';
+    return (dest);
 }
 
-/**
- * _strlen - it gives the length of a string
- * @s: pointer to the string
- * Return: the length of string
- */
-int _strlen(char *s)
+char *_itoa(int n)
 {
-	int i = 0;
+    char buffer[20];
+    int i = 0;
 
-	while (*(s + i) != '\0')
-	{
-		i++;
-	}
-	return (i);
+    if (n == 0)
+        buffer[i++] = '0';
+    else
+    {
+        while (n > 0)
+        {
+            buffer[i++] = (n % 10) + '0';
+            n /= 10;
+        }
+    }
+
+    buffer[i] = '\0';
+    reverse_string(buffer, i);
+
+    return (_duplicate(buffer));
 }
 
-/**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
- */
-int _putchar(char c)
+void reverse_string(char *str, int len)
 {
-	return (write(1, &c, 1));
+    char tmp;
+    int start = 0;
+    int end = len - 1;
+
+    while (start < end)
+    {
+        tmp = str[start];
+        str[start] = str[end];
+        str[end] = tmp;
+        start++;
+        end--;
+    }
+}
+int is_positive(char *str)
+{
+    int i = 0;
+
+    if(!str)
+        return (0);
+    for(i = 0; str[i]; i++)
+    {
+        if (str[i] < '0' || str[i] > '9')
+            return (0);
+    }
+    return (1);
 }
 
-/**
- * _puts - prints a string
- * @str: pointer to string
- */
-
-void _puts(char *str)
+int _atoi(char *str)
 {
-	int i = 0;
+    int i = 0, num = 0;
 
-	while (str[i])
-	{
-		_putchar(str[i]);
-		i++;
-	}
+    for(i = 0; str[i]; i++)
+    {
+        num *= 10;
+        num += (str[i] - '0');
+    }
+    return (num);
 }
