@@ -1,36 +1,89 @@
 #include "shell.h"
 
 /**
- * main - Shell main function
- * @ac: Count of arguments
- * @av: Arguments
- * Return: 0
- **/
-
-int main(int ac, char **argv)
+ * sig_handler - checks if Ctrl C is pressed
+ * @sig_num: int
+ */
+void sig_handler(int sig_num)
 {
-    char *line = NULL;
-    char **command = NULL;
-    int status = 0, idx = 0;
-    (void)ac;
+	if (sig_num == SIGINT)
+	{
+		_puts("\n#cisfun$ ");
+	}
+}
 
-    while (1)
-    {
-        line = read_line();
-        if (line == NULL)
-        {
-            if (isatty(STDIN_FILENO) == 1)
-                write(STDOUT_FILENO, "\n", 1);
-            return (status);
-        }
-        idx++;
-        command = splitter(line);
-        if (!command)
-            continue;
+/**
+* _EOF - handles the End of File
+* @len: return value of getline function
+* @buff: buffer
+ */
+void _EOF(int len, char *buff)
+{
+	(void)buff;
+	if (len == -1)
+	{
+		if (isatty(STDIN_FILENO))
+		{
+			_puts("\n");
+			free(buff);
+		}
+		exit(0);
+	}
+}
+/**
+  * _isatty - verif if terminal
+  */
 
-        if (is_builtin(command[0]))
-            handle_builtin(command, argv, &status, idx);
-        else
-            status = _execute(command, argv, idx);
-    }
+void _isatty(void)
+{
+	if (isatty(STDIN_FILENO))
+		_puts("#cisfun$ ");
+}
+/**
+ * main - Shell
+ * Return: 0 on success
+ */
+
+int main(void)
+{
+	ssize_t len = 0;
+	char *buff = NULL, *value, *pathname, **arv;
+	size_t size = 0;
+	list_path *head = NULL;
+	void (*f)(char **);
+
+	signal(SIGINT, sig_handler);
+	while (len != EOF)
+	{
+		_isatty();
+		len = getline(&buff, &size, stdin);
+		_EOF(len, buff);
+		arv = splitstring(buff, " \n");
+		if (!arv || !arv[0])
+			execute(arv);
+		else
+		{
+			value = _getenv("PATH");
+			head = linkpath(value);
+			pathname = _which(arv[0], head);
+			f = checkbuild(arv);
+			if (f)
+			{
+				free(buff);
+				f(arv);
+			}
+			else if (!pathname)
+				execute(arv);
+			else if (pathname)
+			{
+				free(arv[0]);
+				arv[0] = pathname;
+				execute(arv);
+			}
+		}
+	}
+	free_list(head);
+	freearv(arv);
+	free(buff);
+	return (0);
 }
